@@ -13,13 +13,35 @@ function quoteMessage(data) {
 }
 const menuButton = document.querySelector('.menu-toggle');
 const mobileNav = document.querySelector('#mobile-nav');
-function closeMenu() { menuButton.setAttribute('aria-expanded', 'false'); menuButton.setAttribute('aria-label', 'Abrir menu'); mobileNav.hidden = true; }
-menuButton.addEventListener('click', () => { const expanded = menuButton.getAttribute('aria-expanded') === 'true'; menuButton.setAttribute('aria-expanded', String(!expanded)); menuButton.setAttribute('aria-label', expanded ? 'Abrir menu' : 'Fechar menu'); mobileNav.hidden = expanded; });
-mobileNav.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
-document.addEventListener('keydown', event => { if (event.key === 'Escape' && !mobileNav.hidden) { closeMenu(); menuButton.focus(); } });
+function closeMenu() {
+  if (!menuButton || !mobileNav) return;
+  menuButton.setAttribute('aria-expanded', 'false');
+  menuButton.setAttribute('aria-label', 'Abrir menu');
+  mobileNav.hidden = true;
+}
+if (menuButton && mobileNav) {
+  menuButton.addEventListener('click', () => {
+    const expanded = menuButton.getAttribute('aria-expanded') === 'true';
+    menuButton.setAttribute('aria-expanded', String(!expanded));
+    menuButton.setAttribute('aria-label', expanded ? 'Abrir menu' : 'Fechar menu');
+    mobileNav.hidden = expanded;
+  });
+  mobileNav.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && !mobileNav.hidden) { closeMenu(); menuButton.focus(); }
+  });
+  if (window.matchMedia) window.matchMedia('(min-width: 901px)').addEventListener('change', closeMenu);
+}
+document.querySelectorAll('.nav-services').forEach(menu => {
+  menu.addEventListener('keydown', event => {
+    if (event.key === 'Escape') { menu.open = false; menu.querySelector('summary').focus(); }
+  });
+  menu.querySelectorAll('a').forEach(link => link.addEventListener('click', () => { menu.open = false; }));
+  document.addEventListener('click', event => { if (!menu.contains(event.target)) menu.open = false; });
+});
 const form = document.querySelector('#quote-form');
 const preview = document.querySelector('#request-preview');
-form.addEventListener('submit', event => {
+if (form && preview) form.addEventListener('submit', event => {
   event.preventDefault();
   if (!form.reportValidity()) return;
   const fields = new FormData(form);
@@ -32,10 +54,19 @@ form.addEventListener('submit', event => {
   document.querySelector('#copy-status').textContent = '';
   window.open(url, '_blank', 'noopener,noreferrer');
 });
-document.querySelector('#copy-request').addEventListener('click', async () => {
+document.querySelector('#copy-request')?.addEventListener('click', async () => {
   const status = document.querySelector('#copy-status');
   try { await navigator.clipboard.writeText(preview.value); status.textContent = 'Mensagem copiada. Cole no WhatsApp para enviar.'; }
   catch { preview.focus(); preview.select(); status.textContent = 'Texto selecionado. Use a opção Copiar do seu dispositivo.'; }
 });
-document.querySelector('#year').textContent = new Date().getFullYear();
-if ('IntersectionObserver' in window) { const observer = new IntersectionObserver(entries => { document.querySelector('.whatsapp-float').classList.toggle('is-hidden', entries[0].isIntersecting); }, { threshold: .08 }); observer.observe(document.querySelector('#orcamento')); }
+const year = document.querySelector('#year');
+if (year) year.textContent = new Date().getFullYear();
+const floatingContact = document.querySelector('.whatsapp-float');
+const contactSection = document.querySelector('#orcamento');
+if ('IntersectionObserver' in window && floatingContact && contactSection) {
+  const observer = new IntersectionObserver(entries => {
+    // Keep a keyboard-focused link visible until focus leaves it.
+    floatingContact.classList.toggle('is-hidden', entries[0].isIntersecting && document.activeElement !== floatingContact);
+  }, { threshold: .08 });
+  observer.observe(contactSection);
+}
