@@ -203,14 +203,31 @@ for css in ROOT.glob('*.css'):
 check((ROOT/'app.js').stat().st_size < 8_000, 'JavaScript size budget')
 check(sum(p.stat().st_size for p in ROOT.glob('*.css')) < 70_000, 'CSS size budget')
 
-# Protect the published anchors, business assets, verification and current form.
+# Protect published anchors, business assets, verification and the form contract.
 try:
     old = subprocess.check_output(['git','show',BASELINE+':index.html'],cwd=ROOT,text=True)
     previous = Document(old)
     check({x.get('id') for x in previous.all() if x.get('id')} <= {x.get('id') for x in pages['/'].all()}, 'Published homepage anchors removed')
     original_form = next(x for x in previous.all('form') if x.get('id') == 'quote-form')
     current_form = next(x for x in pages['/'].all('form') if x.get('id') == 'quote-form')
-    check(original_form.text() == current_form.text(), 'Homepage form text/options changed')
+    # Copy and service choices may evolve; keep field IDs/types and constraints
+    # so the existing WhatsApp flow still works after the commercial redesign.
+    fields = ('input', 'select', 'textarea')
+    old_fields = {x.get('id'):x for x in original_form.all() if x.tag in fields}
+    new_fields = {x.get('id'):x for x in current_form.all() if x.tag in fields}
+    check(old_fields.keys() == new_fields.keys(), 'Homepage form fields removed/renamed')
+    for field_id, old_field in old_fields.items():
+        new_field = new_fields[field_id]
+        check(old_field.tag == new_field.tag, 'Form field type changed: ' + field_id)
+        for attribute in ('type', 'name', 'maxlength', 'autocomplete', 'required', 'readonly'):
+            check(old_field.attrs.get(attribute) == new_field.attrs.get(attribute), 'Form contract changed: ' + field_id + '/' + attribute)
+    choices = {x.get('value') or x.text().strip() for x in current_form.all('option')}
+    required_services = {'Gestão e licenciamento ambiental', 'Regularização rural',
+                         'Recursos hídricos e poços', 'Segurança do trabalho',
+                         'Máquinas e serviços em campo', 'Embargos ambientais',
+                         'Regularização agronômica', 'Pecuária e confinamentos',
+                         'Medição de ruído industrial com sonômetro'}
+    check(required_services <= choices, 'Missing service in quote selector')
     for filename in ['CNAME','robots.txt','googlebb000e05e4119fe0.html','favicon.ico','apple-touch-icon.png']:
         check(subprocess.check_output(['git','show',BASELINE+':'+filename],cwd=ROOT) == (ROOT/filename).read_bytes(), 'Published file changed: '+filename)
     old_assets = subprocess.check_output(['git','ls-tree','-r','--name-only',BASELINE,'assets'],cwd=ROOT,text=True).splitlines()
