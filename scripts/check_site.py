@@ -150,7 +150,7 @@ for pathname, doc in pages.items():
                 check(dest_path in pages and any(x.get('id') == unquote(url.fragment) for x in pages[dest_path].all()), context + 'Broken fragment ' + href)
             if node.tag == 'a' and url.path in pages:
                 internal_graph[pathname].add(url.path)
-            if node.tag in ('script','image','img') or node.get('rel') == 'stylesheet':
+            if node.tag in ('script','image','img') or node.get('rel') == 'stylesheet' or (node.get('rel') == 'preload' and node.get('as') == 'font'):
                 assets.add(target)
         if url.netloc == 'wa.me':
             check(url.path == '/5594981068031', context + 'Wrong WhatsApp number')
@@ -178,8 +178,8 @@ for pathname, doc in pages.items():
             if script.get('src'):
                 check('defer' in script.attrs, context + 'Blocking script')
         size = sum(p.stat().st_size for p in assets if p.is_file())
-        check(size < 220_000, context + f'Initial HTML/CSS/JS/logo budget exceeded: {size}')
-        resources_report.append({'path': pathname, 'html_bytes': (ROOT / pathname.lstrip('/') / 'index.html').stat().st_size, 'html_css_js_logo_bytes':size})
+        check(size < 220_000, context + f'Initial HTML/CSS/JS/logo/font budget exceeded: {size}')
+        resources_report.append({'path': pathname, 'html_bytes': (ROOT / pathname.lstrip('/') / 'index.html').stat().st_size, 'html_css_js_logo_font_bytes':size})
 
 check(len(titles) == len(set(titles)), 'Duplicate page titles')
 check(len(descriptions) == len(set(descriptions)), 'Duplicate descriptions')
@@ -241,7 +241,7 @@ def luminance(color):
     values=[int(color[i:i+2],16)/255 for i in (1,3,5)]
     values=[v/12.92 if v<=.04045 else ((v+.055)/1.055)**2.4 for v in values]
     return sum(v*w for v,w in zip(values,(.2126,.7152,.0722)))
-for fg,bg in [('#56665f','#ffffff'),('#56665f','#f4f7f3'),('#145a36','#ffffff'),('#ffffff','#073b28'),('#c6e4b5','#215e42'),('#e4eee7','#215e42'),('#476355','#ffffff')]:
+for fg,bg in [('#183c35','#ffffff'),('#587068','#ffffff'),('#587068','#edf3e9'),('#ffffff','#074bab'),('#b5df91','#103c2c'),('#d8eaca','#103c2c'),('#bdd7fa','#074bab')]:
     a,b=sorted([luminance(fg),luminance(bg)])
     contrast=(b+.05)/(a+.05)
     check(contrast>=4.5,f'Insufficient text contrast {fg}/{bg}: {contrast:.2f}')
