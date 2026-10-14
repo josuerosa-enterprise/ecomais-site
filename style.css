@@ -51,8 +51,8 @@ h2 span{color:#658173}
 .desktop-nav>a:hover,.desktop-nav a[aria-current=page]{text-decoration:underline;text-underline-offset:5px}
 .nav-services{position:relative}
 .nav-services summary{list-style:none;cursor:pointer}
-.nav-services summary::after{content:'⌄';margin-left:6px}
-.nav-services[open] summary::after{content:'⌃'}
+.nav-services summary::after{content:'';display:inline-block;width:.45em;height:.45em;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;margin-left:9px;vertical-align:.2em;transform:rotate(45deg)}
+.nav-services[open] summary::after{transform:rotate(225deg);vertical-align:0}
 summary::-webkit-details-marker{display:none}
 .nav-services-list{position:absolute;top:100%;left:-20px;min-width:282px;padding:12px;background:#fff;border:1px solid var(--line);box-shadow:0 16px 30px #103c2c12}
 .nav-services-list a{display:block;font-size:14px;line-height:1.5;padding:12px}
@@ -105,3 +105,7 @@ footer{background:#fff;border-top:1px solid var(--line)}
 @media(max-width:380px){:root{--gutter:20px}.brand svg{width:164px;height:41px}.form-row{grid-template-columns:1fr;gap:0}.quote-form{padding:24px 20px}.group-bar .group-location{font-size:8px}.footer-top{gap:28px 16px}.footer-column a{font-size:11px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}.button:hover{transform:none}}
 @media print{.group-bar,.header,.whatsapp-float,.skip-link,.quote-form,.footer-column{display:none!important}:root{--gutter:0}body{color:#000;background:#fff;font-size:12pt}.container{width:100%}.footer-top{display:block;padding-block:20px}.footer-bottom{padding-bottom:0}h1,h2,h3{break-after:avoid}article{break-inside:avoid}}
+
+/* Vector arrows keep their shape on iOS, Android and desktop. */
+.icon-arrow{display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;line-height:1;vertical-align:middle}
+.icon-arrow>svg{display:block;width:1em;height:1em;flex:none}
