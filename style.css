@@ -109,3 +109,10 @@ footer{background:#fff;border-top:1px solid var(--line)}
 /* Vector arrows keep their shape on iOS, Android and desktop. */
 .icon-arrow{display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;line-height:1;vertical-align:middle}
 .icon-arrow>svg{display:block;width:1em;height:1em;flex:none}
+
+/* Physical units: readable address blocks on desktop and mobile. */
+.unit-address{width:100%;max-width:100%;margin-top:18px;padding-top:16px;border-top:1px solid currentColor;overflow-wrap:anywhere}
+.unit-address strong{display:block;font-size:13px;font-weight:600;line-height:1.5;margin-bottom:8px}
+.unit-address address{font-style:normal;font-size:13px;line-height:1.8}
+.footer-column .unit-address{border-color:var(--line)}
+.contact-details .unit-address{border-color:#ffffff40}
