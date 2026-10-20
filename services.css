@@ -117,3 +117,25 @@
 .service-hero a:focus-visible,.service-budget a:focus-visible{outline-color:var(--green)}
 @media(max-width:680px){.service-hero{padding-block:22px 46px}.service-hero h1{font-size:39px}.service-section{padding-block:56px}.service-start{padding:26px}.service-scenarios{gap:16px}.service-process{grid-template-columns:1fr}.service-scenarios p,.service-process p{font-size:14px}}
 
+
+/* Service pages carry the same high-contrast ECOMAIS experience. */
+.service-hero{background:radial-gradient(ellipse at 0 100%,#20593d,transparent 70%),#0b3027;color:white;border:0;padding-block:65px 75px}
+.service-hero h1{color:#fff;font-weight:550;letter-spacing:-.05em}
+.service-hero .eyebrow{color:#b9db97}.service-lead{color:#c3d6c8}.service-hero-note{color:#9ebbab}
+.service-start{background:#f6faee;border:0;border-radius:23px;padding:35px;color:var(--ink);box-shadow:0 20px 45px #021d1b18}
+.service-start h2{font-weight:550}.service-start .service-label{color:#548044}
+.service-hero .button,.service-budget .button{background:#c2e592;color:#143b29;border-color:#c2e592}
+.service-hero .button:hover,.service-budget .button:hover{background:#d5efb4;border-color:#d5efb4}
+.service-actions>a:not(.button){color:#e2ede0}
+.service-sections{background:#f0f5e8;border-bottom:0}.service-sections a{color:#396043;font-weight:550}
+.service-scenarios article{border-radius:20px;background:#f4f8ee;border-color:#e1ebd8;padding:32px}
+.service-number{display:grid;place-items:center;width:35px;height:35px;border-radius:50%;background:#e3edd4;color:#456d35}
+.service-context{background:#f0f5e8}.service-context .service-callout{border-color:#87af69}
+.service-documents{background:#eff5f9}.service-documents strong{color:#234d65}
+.service-process li{border-color:#b8d299}.service-process li::before{color:#3f723d;font-weight:600}
+.service-budget{background:radial-gradient(ellipse at 0 100%,#20593d,transparent 70%),#0b3027;color:white;border:0}
+.service-budget .eyebrow{color:#c2e592}.service-budget p{color:#bad0c1}.service-budget h2{font-weight:500;letter-spacing:-.05em}
+.service-related a{border-radius:12px;background:#f3f7ed;border:0;padding:21px;margin-bottom:11px;color:#264f37}
+.service-faq .faq-list summary::after{background:#eaf2df;border-radius:50%;width:30px;height:30px;display:grid;place-items:center;font-size:22px}
+@media(max-width:680px){.service-hero{padding-block:40px 48px}.service-hero h1{font-size:40px}.service-start{padding:27px;border-radius:18px}.service-actions .button{font-size:12px}.service-sections>div{flex-wrap:nowrap;overflow-x:auto;gap:22px;scrollbar-width:none}.service-sections a{white-space:nowrap;font-size:11px;flex-shrink:0}.service-scenarios article{padding:26px;border-radius:18px}.service-budget .button{font-size:12px}}
+
