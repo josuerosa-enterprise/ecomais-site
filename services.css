@@ -13,11 +13,11 @@
 .service-hero .button,.service-budget .button{background:#fff;color:var(--forest);border-color:#fff;text-align:center;max-width:100%}
 .service-hero .button:hover,.service-budget .button:hover{background:#ecf4e6;border-color:#ecf4e6}
 .service-hero-note{color:#d0e0cd;font-size:11px;margin-top:24px}
-.service-start{padding:34px;background:#edf3e9;color:var(--ink)}
+.service-start{padding:34px;background:var(--paper);color:var(--ink)}
 .service-label{color:var(--blue);font-size:9px;font-weight:650;letter-spacing:.14em;margin-bottom:20px}
 .service-start h2{font-size:30px;line-height:1.15;letter-spacing:-.045em;margin-bottom:18px}
 .service-start>p:not(.service-label){color:var(--muted);font-size:14px;line-height:1.8}
-.service-start ul{padding-left:18px;margin:19px 0;border-bottom:1px solid #c5d3c3;padding-bottom:16px}
+.service-start ul{padding-left:18px;margin:19px 0;border-bottom:1px solid var(--line);padding-bottom:16px}
 .service-start li{padding-block:6px;color:var(--ink);font-size:14px;line-height:1.75}
 .service-start>a{display:inline-block;font-size:12px;font-weight:550;color:var(--blue);text-decoration:underline;text-underline-offset:4px;padding-block:8px}
 .service-sections{border-bottom:1px solid var(--line);background:#fff}
@@ -40,17 +40,17 @@
 .service-context p{font-size:15px;color:var(--muted);margin-bottom:22px;line-height:1.85}
 .service-context .service-callout{border-left:2px solid var(--green);padding-left:20px;color:var(--ink);margin-bottom:0}
 .service-process{counter-reset:stage;list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:28px;margin:0;padding:0}
-.service-process li{counter-increment:stage;border-top:1px solid #bacfc0;padding-top:22px;min-width:0}
+.service-process li{counter-increment:stage;border-top:1px solid var(--line);padding-top:22px;min-width:0}
 .service-process li::before{content:'0' counter(stage);display:block;color:var(--blue);font-size:10px;letter-spacing:.1em;margin-bottom:25px}
 .service-process h3{font-size:23px;line-height:1.2;margin-bottom:16px;font-weight:450;letter-spacing:-.04em}
 .service-process p{font-size:14px;line-height:1.85;color:var(--muted)}
-.service-documents{background:#edf3e9;padding-block:75px}
+.service-documents{background:var(--paper);padding-block:75px}
 .service-documents-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:9%}
 .service-documents .eyebrow{margin-bottom:23px}
 .service-documents h2{font-size:clamp(32px,3.3vw,46px);line-height:1.13;letter-spacing:-.045em;margin-bottom:26px}
 .service-documents p{font-size:15px;line-height:1.85;margin-bottom:17px;color:var(--muted)}
 .service-documents ul{list-style:none;padding:0;margin:0}
-.service-documents li{border-bottom:1px solid #c9d8c8;padding:21px 0}
+.service-documents li{border-bottom:1px solid var(--line);padding:21px 0}
 .service-documents li:first-child{padding-top:0}
 .service-documents strong,.service-documents li span{display:block}
 .service-documents strong{color:var(--ink);margin-bottom:8px;font-size:17px;line-height:1.5;font-weight:550;letter-spacing:-.02em}
@@ -92,3 +92,28 @@
 @media(max-width:680px){.service-page .breadcrumbs{padding-block:15px;font-size:11px}.service-hero{padding-block:43px}.service-hero h1{font-size:clamp(38px,10.5vw,57px);letter-spacing:-.05em;margin-block:21px 24px}.service-hero .eyebrow{font-size:9px;letter-spacing:.11em}.service-lead{font-size:16px;line-height:1.85}.service-actions{align-items:stretch;flex-direction:column;gap:7px}.service-actions .button{justify-content:center}.service-actions>a:not(.button){align-self:flex-start;font-size:13px}.service-start{padding:27px 24px}.service-start h2{font-size:30px}.service-start li{font-size:15px}.service-hero-note{font-size:11px}.service-sections>div{gap:0 23px;padding-block:10px}.service-sections a{font-size:12px}.service-section{padding-block:58px}.service-heading{margin-bottom:29px}.service-heading h2{font-size:34px}.service-heading>p:last-child{font-size:15px}.service-heading .eyebrow{margin-bottom:20px}.service-scenarios article{padding:27px 25px}.service-scenarios h3{font-size:26px}.service-context,.service-documents,.service-budget{padding-block:54px}.service-context-grid,.service-documents-grid,.service-budget-grid,.service-related{grid-template-columns:1fr;gap:29px}.service-context h2,.service-documents h2,.service-faq h2,.service-related h2{font-size:34px}.service-documents li span{font-size:15px}.service-process{gap:28px 22px}.service-process h3{font-size:22px}.service-process p{font-size:15px}.service-faq{gap:28px}.faq-list summary{font-size:14px;padding-block:22px;gap:18px}.faq-list details>p{font-size:15px;padding-right:10px}.service-budget .button{width:100%;justify-content:center}.service-budget h2{font-size:38px}.service-sources{padding-bottom:33px}.service-sources p,.service-sources li{font-size:12px}}
 @media(max-width:380px){.service-process{grid-template-columns:1fr}.service-sections>div{gap:0 18px}.service-sections a{font-size:11px}.service-hero h1{font-size:37px}.service-budget h2{font-size:34px}}
 @media print{.service-actions,.service-sections,.service-related{display:none}.service-hero,.service-budget,.service-context,.service-documents,.service-start{background:#fff;color:#000;padding-block:22px}.service-hero h1,.service-hero p,.service-budget p,.service-start p,.service-start li{color:#000}.service-hero-grid,.service-context-grid,.service-documents-grid,.service-budget-grid{grid-template-columns:1fr}.service-section{padding-block:25px}.service-hero h1{font-size:36pt}}
+
+/* Corporate treatment for every service page. */
+.service-hero{background:#fff;color:var(--ink);padding-block:54px 76px;border-bottom:1px solid var(--line)}
+.service-hero h1{color:var(--ink);font-size:clamp(38px,4.2vw,62px);font-weight:450;letter-spacing:-.045em;line-height:1.1}
+.service-hero .eyebrow,.service-hero-note{color:var(--muted)}
+.service-lead{color:var(--muted);font-size:15px}
+.service-start{background:var(--paper);border:1px solid var(--line);padding:34px}
+.service-start h2{font-size:28px}
+.service-hero .button,.service-budget .button{background:var(--forest);color:white;border-color:var(--forest)}
+.service-hero .button:hover,.service-budget .button:hover{background:#172d24;border-color:#172d24}
+.service-actions>a:not(.button){color:var(--ink)}
+.service-sections{background:#fafbf9}
+.service-sections a{color:var(--muted)}
+.service-label,.service-number,.service-process li::before{color:var(--muted)}
+.service-scenarios{gap:20px}
+.service-scenarios article{background:white;border:1px solid var(--line)}
+.service-scenarios h3,.service-process h3{font-weight:450;letter-spacing:-.03em}
+.service-context,.service-documents{background:var(--paper)}
+.service-context .service-callout{border-color:#a5b2a6}
+.service-budget{background:#f5f6f3;color:var(--ink);border-block:1px solid var(--line)}
+.service-budget .eyebrow,.service-budget p{color:var(--muted)}
+.service-budget h2{font-size:clamp(34px,3.5vw,50px)}
+.service-hero a:focus-visible,.service-budget a:focus-visible{outline-color:var(--green)}
+@media(max-width:680px){.service-hero{padding-block:22px 46px}.service-hero h1{font-size:39px}.service-section{padding-block:56px}.service-start{padding:26px}.service-scenarios{gap:16px}.service-process{grid-template-columns:1fr}.service-scenarios p,.service-process p{font-size:14px}}
+
