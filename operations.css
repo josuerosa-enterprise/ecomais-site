@@ -19,3 +19,5 @@
 .operation-motion[hidden]{display:none}.operation-motion svg{width:16px;height:16px}.operation-motion:hover{background:#003e39}.operation-motion:focus-visible{outline:3px solid #c5e65b;outline-offset:4px}
 @media(max-width:600px){.operation-motion{top:16px;right:16px}}
 @media(prefers-reduced-motion:reduce){.operation-video{transition:none}}
+
+.operation-media{position:absolute;inset:0;z-index:-3;pointer-events:none}

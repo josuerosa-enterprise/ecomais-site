@@ -28,4 +28,4 @@ Three illustrative, AI-generated image-to-video scenes based on the approved sit
 
 Direction for all clips: locked camera, natural motion, preserve equipment geometry, faces, uniforms and lettering, no cuts or added text. These are illustrative scenes, not footage documenting actual clients, employees or jobs.
 
-Only the selected scene loads. Playback is silent and inline with an accessible pause/play control; hidden/offscreen playback pauses. Reduced-motion and data-saving preferences initially use the static photo, with optional manual playback. Campaign selection and copy remain manual.
+Only the selected scene loads. Playback is silent and inline with an accessible pause/play control; hidden/offscreen playback pauses. Reduced-motion and data-saving preferences initially use the static photo, with optional manual playback. The carousel advances automatically every seven seconds with a horizontal slide transition. Manual selection resets the interval; the shared pause control stops both video and rotation. Reduced-motion preferences disable automatic rotation.

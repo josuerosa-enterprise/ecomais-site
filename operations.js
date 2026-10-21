@@ -1,5 +1,5 @@
 'use strict';
-// Campaign text changes only when the visitor chooses a scene.
+// Automatic seven-second carousel with manual selection and a shared pause control.
 const operationScenes = {
   maquinas: { image:'/assets/jcb-3cx-plus-operacao.webp', alt:'Cena ilustrativa de retroescavadeira JCB 3CX Plus em operação rural', kicker:'ECOMAIS · MÁQUINAS E SOLUÇÕES AMBIENTAIS', title:'Inteligência ambiental.', emphasis:'Força para realizar.', description:'Consultoria, regularização e máquinas para transformar as necessidades do seu empreendimento em um plano de ação.' },
   ambiental: { image:'/assets/paisagem-ambiental-ecomais.webp', alt:'Paisagem ilustrativa de rio, floresta e área rural', kicker:'CONSULTORIA AMBIENTAL E RURAL', title:'Seu empreendimento.', emphasis:'No caminho da regularização.', description:'Licenciamento ambiental, CAR, outorgas e apoio técnico para organizar as próximas etapas da sua empresa ou propriedade.' },
@@ -15,15 +15,24 @@ let selectedScene='maquinas';
 let requestedMotion=!motionPreference.matches && !navigator.connection?.saveData;
 let heroVisible=true;
 let videoGeneration=0;
+let rotationTimer;
+const sceneOrder=Object.keys(operationScenes);
+function scheduleRotation() {
+  clearTimeout(rotationTimer);
+  if(requestedMotion && heroVisible && !document.hidden) {
+    rotationTimer=setTimeout(()=>selectScene(sceneOrder[(sceneOrder.indexOf(selectedScene)+1)%sceneOrder.length]),7000);
+  }
+}
 
 function updateMotionButton() {
-  const playing=!heroVideo.paused;
-  const label=playing?'Pausar vídeo':'Reproduzir vídeo';
+  const playing=requestedMotion;
+  const label=playing?'Pausar animação':'Reproduzir animação';
   motionButton.setAttribute('aria-label',label+' de abertura');
   motionButton.querySelector('span').textContent=label;
   motionButton.querySelector('path').setAttribute('d',playing?'M7 5h3v14H7zm7 0h3v14h-3z':'M8 5v14l11-7z');
 }
 function syncMotion() {
+  scheduleRotation();
   if(!requestedMotion || !heroVisible || document.hidden) {
     heroVideo.pause();
     updateMotionButton();
@@ -61,7 +70,7 @@ if(heroVideo && motionButton) {
     updateMotionButton();
   });
   motionButton.addEventListener('click',()=>{
-    requestedMotion=heroVideo.paused;
+    requestedMotion=!requestedMotion;
     syncMotion();
   });
   motionPreference.addEventListener('change',event=>{
@@ -80,17 +89,29 @@ if(heroVideo && motionButton) {
 }
 const scenePhoto = document.querySelector('#operation-photo');
 const sceneTitle = document.querySelector('#hero-title');
-sceneButtons.forEach(button => button.addEventListener('click', () => {
-  const scene=operationScenes[button.dataset.scene];
+function selectScene(key) {
+  const scene=operationScenes[key];
   if(!scene || !scenePhoto || !sceneTitle) return;
+  if(key!==selectedScene && !motionPreference.matches) {
+    const outgoing=scenePhoto.cloneNode();
+    outgoing.removeAttribute('id');
+    outgoing.alt='';
+    outgoing.setAttribute('aria-hidden','true');
+    document.querySelector('.operation-hero').prepend(outgoing);
+    outgoing.animate([{transform:'translateX(0)'},{transform:'translateX(-100%)'}],{duration:650,easing:'ease-in-out'}).finished.finally(()=>outgoing.remove());
+    document.querySelector('.operation-media').animate([{transform:'translateX(100%)'},{transform:'translateX(0)'}],{duration:650,easing:'ease-in-out'});
+    document.querySelector('.operation-content').animate([{opacity:0,transform:'translateX(35px)'},{opacity:1,transform:'translateX(0)'}],{duration:650,easing:'ease-out'});
+  }
   scenePhoto.src=scene.image; scenePhoto.alt=scene.alt;
   document.querySelector('#operation-kicker').textContent=scene.kicker;
   document.querySelector('#operation-description').textContent=scene.description;
   const emphasis=document.createElement('em'); emphasis.textContent=scene.emphasis;
   sceneTitle.replaceChildren(document.createTextNode(scene.title),document.createElement('br'),emphasis);
-  sceneButtons.forEach(item=>item.setAttribute('aria-pressed',String(item===button)));
-  if(selectedScene!==button.dataset.scene && heroVideo) {
-    selectedScene=button.dataset.scene;
+  sceneButtons.forEach(item=>item.setAttribute('aria-pressed',String(item.dataset.scene===key)));
+  if(selectedScene!==key && heroVideo) {
+    selectedScene=key;
     changeVideo();
   }
-}));
+  scheduleRotation();
+}
+sceneButtons.forEach(button=>button.addEventListener('click',()=>selectScene(button.dataset.scene)));
