@@ -17,3 +17,15 @@ Assets are optimized as WebP. Homepage has manual scene selection, photographic 
 Landscape generation brief: photorealistic, panoramic corporate website photograph of a winding river with tropical riparian forest meeting managed rural land in northern Brazil; soft morning light, natural emerald and muted blue palette; quieter dark forest on the left for legible headline placement; no people, logos, text or watermark.
 
 Validation: desktop preview; 390px and 320px iframe layouts; mobile navigation; service filtering; service selection and form progression; six existing conversion tests. Existing GitHub Pages hosting retained.
+
+## Hero motion — 21 October 2026
+
+Three illustrative, AI-generated image-to-video scenes based on the approved site photography, generated with Runway Seedance 2.0. Each clip is approximately five seconds, silent H.264/yuv420p, MP4 fast-start, optimized at CRF 27. Original photographs remain as loading and playback-error fallbacks.
+
+- `hero-maquinas.mp4`: JCB slowly lifts its front bucket; light falling soil and dust. Task `7c230d7a-7e00-45de-88e0-aaf33d7b2f4e`; 1280×720.
+- `hero-ambiental.mp4`: illustrative ECOMAIS team reviewing a field plan with subtle gestures. Task `c89d38e6-7fd8-4514-ab6b-2598e2297140`; 1280×720.
+- `hero-seguranca.mp4`: illustrative technician checks a tablet beside a tripod-mounted sound level meter. Task `b7f8cc3d-dea7-4679-8b5f-5c75b65fe9fe`; optimized to 960×720.
+
+Direction for all clips: locked camera, natural motion, preserve equipment geometry, faces, uniforms and lettering, no cuts or added text. These are illustrative scenes, not footage documenting actual clients, employees or jobs.
+
+Only the selected scene loads. Playback is silent and inline with an accessible pause/play control; hidden/offscreen playback pauses. Reduced-motion and data-saving preferences initially use the static photo, with optional manual playback. Campaign selection and copy remain manual.
