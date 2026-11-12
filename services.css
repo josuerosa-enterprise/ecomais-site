@@ -139,3 +139,7 @@
 .service-faq .faq-list summary::after{background:#eaf2df;border-radius:50%;width:30px;height:30px;display:grid;place-items:center;font-size:22px}
 @media(max-width:680px){.service-hero{padding-block:40px 48px}.service-hero h1{font-size:40px}.service-start{padding:27px;border-radius:18px}.service-actions .button{font-size:12px}.service-sections>div{flex-wrap:nowrap;overflow-x:auto;gap:22px;scrollbar-width:none}.service-sections a{white-space:nowrap;font-size:11px;flex-shrink:0}.service-scenarios article{padding:26px;border-radius:18px}.service-budget .button{font-size:12px}}
 
+
+/* Existing illustrative photography supports the expanded service portfolio. */
+.service-photo{margin:0;min-width:0}.service-photo img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;border-radius:20px}.service-photo figcaption{font-size:11px;line-height:1.65;color:#c3d6c8;margin-top:12px}.service-photo+*{min-width:0}
+@media(max-width:680px){.service-photo img{aspect-ratio:16/10}.service-hero h1{overflow-wrap:break-word;font-size:clamp(30px,9vw,40px)}}

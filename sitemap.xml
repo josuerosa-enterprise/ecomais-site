@@ -1,19 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://ecomaispa.com/</loc>
-    <lastmod>2026-10-12</lastmod>
-  </url>
-  <url>
-    <loc>https://ecomaispa.com/retificacao-car-para/</loc>
-    <lastmod>2026-10-12</lastmod>
-  </url>
-  <url>
-    <loc>https://ecomaispa.com/licenciamento-ambiental-para/</loc>
-    <lastmod>2026-10-12</lastmod>
-  </url>
-  <url>
-    <loc>https://ecomaispa.com/outorga-pocos-para/</loc>
-    <lastmod>2026-10-12</lastmod>
-  </url>
+  <url><loc>https://ecomaispa.com/</loc><lastmod>2026-11-11</lastmod></url>
+  <url><loc>https://ecomaispa.com/licenciamento-ambiental-para/</loc><lastmod>2026-11-11</lastmod></url>
+  <url><loc>https://ecomaispa.com/retificacao-car-para/</loc><lastmod>2026-11-11</lastmod></url>
+  <url><loc>https://ecomaispa.com/outorga-pocos-para/</loc><lastmod>2026-11-11</lastmod></url>
+  <url><loc>https://ecomaispa.com/embargos-ambientais-para/</loc><lastmod>2026-11-11</lastmod></url>
+  <url><loc>https://ecomaispa.com/regularizacao-agronomica-para/</loc><lastmod>2026-11-11</lastmod></url>
+  <url><loc>https://ecomaispa.com/pecuaria-confinamentos-para/</loc><lastmod>2026-11-11</lastmod></url>
+  <url><loc>https://ecomaispa.com/seguranca-trabalho-para/</loc><lastmod>2026-11-11</lastmod></url>
+  <url><loc>https://ecomaispa.com/medicao-ruido-para/</loc><lastmod>2026-11-11</lastmod></url>
+  <url><loc>https://ecomaispa.com/maquinas-servicos-campo-para/</loc><lastmod>2026-11-11</lastmod></url>
 </urlset>
