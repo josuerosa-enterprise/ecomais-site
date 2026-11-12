@@ -26,4 +26,4 @@ for path in sorted(ROOT.glob('*.css')):
     inspect(tinycss2.parse_stylesheet(path.read_text(), skip_whitespace=True, skip_comments=True), path.name)
 if errors:
     raise SystemExit('\n'.join(errors))
-print('PASS — CSS syntax parsed across all 3 stylesheets. Browser QA is separate.')
+print('PASS — CSS syntax parsed across all repository stylesheets. Browser QA is separate.')

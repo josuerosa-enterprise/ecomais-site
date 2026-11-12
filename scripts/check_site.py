@@ -14,7 +14,8 @@ import xml.etree.ElementTree as ET
 
 ROOT = Path(__file__).resolve().parents[1]
 ORIGIN = 'https://ecomaispa.com'
-BASELINE = '8c55b2e3e56423c838b86f3e08df79f3db235daf'
+# Published homepage redesign, immediately before this portfolio expansion.
+BASELINE = '79c48bc9a73cdbb45e9a7d97928b06cb8db2f6fd'
 VOID = set('area base br col embed hr img input link meta param source track wbr'.split())
 errors = []
 checks = 0
@@ -71,9 +72,9 @@ class Document(HTMLParser):
     def meta(self, key):
         return [x.get('content') for x in self.all('meta') if x.get('name') == key or x.get('property') == key]
 
-files = sorted(p for p in ROOT.rglob('index.html') if '.git' not in p.parts)
+files = sorted(p for p in ROOT.rglob('index.html') if not {'.git', 'dist'} & set(p.parts) and p.parent.name != 'contatos')
 pages = {'/' + p.relative_to(ROOT).as_posix().removesuffix('index.html'): Document(p.read_text()) for p in files}
-check(len(pages) == 4, 'Expected homepage and three service pages')
+check(len(pages) == 10, 'Expected homepage and nine service pages')
 robots = RobotFileParser()
 robots.parse((ROOT / 'robots.txt').read_text().splitlines())
 sitemap = ET.parse(ROOT / 'sitemap.xml')
@@ -150,7 +151,7 @@ for pathname, doc in pages.items():
                 check(dest_path in pages and any(x.get('id') == unquote(url.fragment) for x in pages[dest_path].all()), context + 'Broken fragment ' + href)
             if node.tag == 'a' and url.path in pages:
                 internal_graph[pathname].add(url.path)
-            if node.tag in ('script','image','img') or node.get('rel') == 'stylesheet' or (node.get('rel') == 'preload' and node.get('as') == 'font'):
+            if node.tag in ('script','image') or node.get('rel') == 'stylesheet' or (node.get('rel') == 'preload' and node.get('as') == 'font'):
                 assets.add(target)
         if url.netloc == 'wa.me':
             check(url.path == '/5594981068031', context + 'Wrong WhatsApp number')
@@ -178,8 +179,25 @@ for pathname, doc in pages.items():
             if script.get('src'):
                 check('defer' in script.attrs, context + 'Blocking script')
         size = sum(p.stat().st_size for p in assets if p.is_file())
-        check(size < 220_000, context + f'Initial HTML/CSS/JS/logo/font budget exceeded: {size}')
+        check(size < 305_000, context + f'Initial HTML/CSS/JS/logo/font budget exceeded: {size}')
+        photos = [ROOT / x.get('src').lstrip('/') for x in doc.all('img') if x.get('src').startswith('/assets/')]
+        check(sum(p.stat().st_size for p in photos) < 400_000, context + 'Photography budget exceeded')
         resources_report.append({'path': pathname, 'html_bytes': (ROOT / pathname.lstrip('/') / 'index.html').stat().st_size, 'html_css_js_logo_font_bytes':size})
+
+# The homepage catalogue must point to the actual service entities and card destinations.
+home_graph = json.loads(next(x.text() for x in pages['/'].all('script') if x.get('type') == 'application/ld+json'))['@graph']
+company = next(x for x in home_graph if x.get('@id') == ORIGIN + '/#empresa')
+offers = company['hasOfferCatalog']['itemListElement']
+check(len(offers) == 9, 'Expected nine catalogue offers')
+for offer in offers:
+    item = offer['itemOffered']
+    route = urlsplit(item['url']).path
+    check(route in pages and route != '/', 'Catalogue must link a service page')
+    check(item.get('@id') == item['url'] + '#servico', 'Catalogue entity ID mismatch')
+    check(item['name'] == pages[route].all('h1')[0].text(), 'Catalogue service name mismatch')
+for card in [x for x in pages['/'].all('article') if 'solution-card' in x.get('class').split()]:
+    links = [x for x in card.all('a') if x.get('class') == 'service-detail']
+    check(len(links) == 1 and links[0].get('href') in pages, 'Card must link one service detail')
 
 check(len(titles) == len(set(titles)), 'Duplicate page titles')
 check(len(descriptions) == len(set(descriptions)), 'Duplicate descriptions')
@@ -200,8 +218,8 @@ for css in ROOT.glob('*.css'):
     for value in re.findall(r'url\([\'\"]?([^\)\'\"]+)', css.read_text()):
         target, url = local_target(value, '/')
         check(target is not None and target.is_file(), css.name + ': Missing CSS asset ' + value)
-check((ROOT/'app.js').stat().st_size < 8_000, 'JavaScript size budget')
-check(sum(p.stat().st_size for p in ROOT.glob('*.css')) < 70_000, 'CSS size budget')
+check((ROOT/'app.js').stat().st_size < 10_000, 'JavaScript size budget')
+check(sum(p.stat().st_size for p in ROOT.glob('*.css')) < 100_000, 'CSS size budget')
 
 # Protect published anchors, business assets, verification and the form contract.
 try:

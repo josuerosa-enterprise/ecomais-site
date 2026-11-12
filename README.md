@@ -37,3 +37,7 @@ PYTHONPATH=/tmp/ecomais-css-qa python3 scripts/check_styles.py
 ```
 
 Esta verificação não substitui a revisão visual em navegador. Para conferir HTTP, canonical, robots e sitemap após publicar, execute `python3 -u scripts/check_live.py`.
+
+## Portfólio de serviços
+
+A [expansão de seis páginas de serviços](docs/portfolio-servicos-2026-11-11.md) documenta o escopo editorial, as URLs e a verificação antes da publicação. Execute também `node --test scripts/test_app.cjs scripts/test_conversion.cjs`. O teste SEO cobre a home e as nove páginas comerciais; contatos é uma página auxiliar preservada. `check_live.py` obtém as rotas diretamente do sitemap e deve ser executado após a publicação autorizada.

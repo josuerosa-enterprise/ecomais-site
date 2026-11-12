@@ -33,6 +33,7 @@ function boot({ home = false, empty = false, clipboardFails = false, observer = 
   for (const id of empty ? [] : ['.menu-toggle', '#mobile-nav', '#year', '.whatsapp-float', '#orcamento']) elements.set(id, new Element());
   if (home) for (const id of ['#quote-form', '#request-preview', '#email-fallback', '#retry-whatsapp', '#copy-status', '#copy-request']) elements.set(id, new Element());
   const doc = new Element();
+  doc.activeElement = null; // A real document never exposes undefined as activeElement.
   const nav = empty ? null : new Element();
   if (nav) { nav.summary = new Element(); nav.links = [new Element()]; }
   doc.querySelector = selector => elements.get(selector) || null;

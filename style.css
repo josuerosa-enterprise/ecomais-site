@@ -21,3 +21,6 @@ h2{font-weight:500;letter-spacing:-.045em}.button{border-radius:100px;font-size:
 :root{--forest:#153e32;--green:#337b40;--blue:#174c70;--muted:#63736a;--line:#e0e7e1;--paper:#f4f7f4}
 .button{border-radius:5px;box-shadow:none}.button:hover{box-shadow:none;transform:none}.group-bar{background:#f4f7f4;border-bottom:1px solid #e7ece7}.group-bar>.container{color:#63736a}.group-bar strong{color:#244934}.header{box-shadow:none;border-bottom:1px solid #edf0ed}.brand svg{width:224px;height:55px}.quote-form{border-radius:8px;box-shadow:none;border:1px solid #e2e8e3}.field input,.field textarea,.field select{border-radius:4px}.nav-services-list{border-radius:5px}.nav-services-list a{border-radius:3px}.mobile-nav{border-radius:0}.whatsapp-float{border-radius:6px}footer{background:#f4f7f4}.footer-brand svg{width:200px;height:49px}
 
+
+/* Keep the expanded service menu within short desktop viewports. */
+.nav-services-list{max-height:min(70dvh,620px);overflow-y:auto;overscroll-behavior:contain}

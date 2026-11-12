@@ -12,7 +12,8 @@ from html.parser import HTMLParser
 import xml.etree.ElementTree as ET
 
 ORIGIN = 'https://ecomaispa.com'
-PATHS = ['/', '/retificacao-car-para/', '/licenciamento-ambiental-para/', '/outorga-pocos-para/']
+from pathlib import Path
+PATHS = [urlsplit(x.text).path for x in ET.parse(Path(__file__).resolve().parents[1] / 'sitemap.xml').findall('.//{*}loc')]
 parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument('--paths', nargs='+', choices=PATHS, default=PATHS)
 args = parser.parse_args()
