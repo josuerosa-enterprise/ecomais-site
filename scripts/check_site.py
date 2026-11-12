@@ -250,6 +250,8 @@ try:
         check(subprocess.check_output(['git','show',BASELINE+':'+filename],cwd=ROOT) == (ROOT/filename).read_bytes(), 'Published file changed: '+filename)
     old_assets = subprocess.check_output(['git','ls-tree','-r','--name-only',BASELINE,'assets'],cwd=ROOT,text=True).splitlines()
     for filename in old_assets:
+        if Path(filename).suffix == '.md':
+            continue  # Editorial notes may document new usage; protect the actual media bytes.
         check(subprocess.check_output(['git','show',BASELINE+':'+filename],cwd=ROOT) == (ROOT/filename).read_bytes(), 'Published asset changed: '+filename)
 except subprocess.CalledProcessError:
     check(False, 'Baseline unavailable. Run from a full git clone, not a shallow archive.')

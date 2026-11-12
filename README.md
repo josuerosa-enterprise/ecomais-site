@@ -25,9 +25,11 @@ A [documentação da expansão de SEO](docs/seo-servicos-2026-10-12.md) contém 
 
 ## Identidade visual
 
-A composição editorial segue a referência publicada em [gruponortebr.com](https://www.gruponortebr.com/) em 12/10/2026. As cores são da ECOMAIS: verde `#35b447`, azul `#074bab`, verde-claro `#8cce38` e verde profundo `#103c2c`. A logo original permanece intacta. A imagem da abertura aparece somente acima de 680 px.
+A reforma comercial usa verde e azul derivados da logo original, preservada sem alterações. A página inicial apresenta os serviços, clientes já publicados e caminhos de orçamento. As cenas operacionais permanecem identificadas como ilustrativas.
 
-`style.css` contém a base compartilhada, `home.css` a página inicial e `services.css` as páginas detalhadas. A fonte Inter é hospedada localmente, com `font-display: swap`; sua licença está em [assets/fonts/OFL.txt](assets/fonts/OFL.txt).
+`style.css` contém a base, `brand.css` a identidade compartilhada, `commercial.css` a composição da página inicial e `services.css` os detalhes dos serviços. Os estilos antigos `home.css`, `presentation.css` e `operations.css` foram substituídos. A fonte Inter continua local. Os vídeos da abertura são opcionais: o visitante inicia ou pausa a reprodução; preferências de movimento reduzido são respeitadas.
+
+A [revisão visual de novembro](docs/reforma-comercial-2026-11-12.md) registra a implementação e os testes. A publicação dessa reforma depende de aprovação explícita.
 
 Para a verificação opcional de sintaxe CSS, sem dependências no site publicado:
 
