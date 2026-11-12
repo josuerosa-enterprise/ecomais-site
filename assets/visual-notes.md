@@ -29,3 +29,7 @@ Three illustrative, AI-generated image-to-video scenes based on the approved sit
 Direction for all clips: locked camera, natural motion, preserve equipment geometry, faces, uniforms and lettering, no cuts or added text. These are illustrative scenes, not footage documenting actual clients, employees or jobs.
 
 Only the selected scene loads. Playback is silent and inline with an accessible pause/play control; hidden/offscreen playback pauses. Reduced-motion and data-saving preferences initially use the static photo, with optional manual playback. The carousel advances automatically every seven seconds with a horizontal slide transition. Manual selection resets the interval; the shared pause control stops both video and rotation. Reduced-motion preferences disable automatic rotation.
+
+## Commercial redesign — 12 November 2026
+
+The existing illustrative images and videos are reused without modification. A split hero places commercial copy beside the operational image. Motion now starts only when the visitor chooses Play; the shared control still pauses both video and rotation. Scene buttons remain manually selectable and use a subtle fade instead of a full-width slide. Reduced-motion preferences remain respected. Existing customer marks, units and scope are preserved.
