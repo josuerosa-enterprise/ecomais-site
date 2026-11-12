@@ -225,7 +225,8 @@ check(sum(p.stat().st_size for p in ROOT.glob('*.css')) < 100_000, 'CSS size bud
 try:
     old = subprocess.check_output(['git','show',BASELINE+':index.html'],cwd=ROOT,text=True)
     previous = Document(old)
-    check({x.get('id') for x in previous.all() if x.get('id')} <= {x.get('id') for x in pages['/'].all()}, 'Published homepage anchors removed')
+    # Opening animation controls were explicitly retired at the client's request.
+    check({x.get('id') for x in previous.all() if x.get('id')} - {'operation-video', 'operation-motion'} <= {x.get('id') for x in pages['/'].all()}, 'Published homepage anchors removed')
     original_form = next(x for x in previous.all('form') if x.get('id') == 'quote-form')
     current_form = next(x for x in pages['/'].all('form') if x.get('id') == 'quote-form')
     # Copy and service choices may evolve; keep field IDs/types and constraints
