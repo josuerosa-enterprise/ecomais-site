@@ -470,3 +470,5 @@ h2{font-size:36px}
 }
 /* Keep the supplied rural photograph's subject visible on narrow screens. */
 @media(max-width:680px){#operation-photo[src$="regularizacao-rural-abertura.webp"]{object-position:82% center}}
+
+.environmental-front img{object-position:right top}
