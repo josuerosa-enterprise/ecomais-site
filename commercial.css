@@ -468,3 +468,5 @@ h2{font-size:36px}
 .image-credit{display:block;color:#d8e8d2;font-size:8px;margin-top:12px;text-align:right}
 .expertise-ribbon>.container{padding-block:22px}
 }
+/* Keep the supplied rural photograph's subject visible on narrow screens. */
+@media(max-width:680px){#operation-photo[src$="regularizacao-rural-abertura.webp"]{object-position:82% center}}
