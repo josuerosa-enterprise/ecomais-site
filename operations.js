@@ -2,7 +2,7 @@
 // Optional seven-second carousel with manual selection and a shared pause control.
 const operationScenes = {
   maquinas: { image:'/assets/jcb-3cx-plus-operacao.webp', alt:'Cena ilustrativa de retroescavadeira JCB 3CX Plus em operação rural', kicker:'ECOMAIS · MÁQUINAS E SOLUÇÕES AMBIENTAIS', title:'Seu projeto em movimento.', emphasis:'Força para realizar.', description:'Retroescavadeira, terraplenagem, açudes e preparo de áreas. Conte onde está seu projeto e solicite uma proposta.' },
-  ambiental: { image:'/assets/paisagem-ambiental-ecomais.webp', alt:'Paisagem ilustrativa de rio, floresta e área rural', kicker:'CONSULTORIA AMBIENTAL E RURAL', title:'Seu empreendimento.', emphasis:'No caminho da regularização.', description:'Licenciamento ambiental, CAR, outorgas e apoio técnico para organizar as próximas etapas da sua empresa ou propriedade.' },
+  ambiental: { image:'/assets/regularizacao-rural-abertura.webp', alt:'Produtor observando uma propriedade rural com pastagem, árvores e gado', kicker:'CONSULTORIA AMBIENTAL E RURAL', title:'Seu empreendimento.', emphasis:'No caminho da regularização.', description:'Licenciamento ambiental, CAR, outorgas e apoio técnico para organizar as próximas etapas da sua empresa ou propriedade.' },
   seguranca: { image:'/assets/medicao-ruido-sonometro.webp', alt:'Cena ilustrativa de medição de ruído com sonômetro por profissional uniformizada ECOMAIS', kicker:'SEGURANÇA E AVALIAÇÃO TÉCNICA', title:'Conhecer os impactos.', emphasis:'Orientar as decisões.', description:'Medição de ruído ambiental e industrial, programas e laudos para apoiar a gestão da sua operação.' }
 };
 const sceneButtons = document.querySelectorAll('[data-scene]');
